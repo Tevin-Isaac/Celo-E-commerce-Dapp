@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -344,3 +345,4 @@ html {
 .testimonial-quote.right cite {
   text-align: right; 
 }
+
