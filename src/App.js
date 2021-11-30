@@ -10,7 +10,7 @@ import erc20Abi from "./contract/erc20.abi.json"
 import './App.css';
 
 const ERC20_DECIMALS = 18
-const MPContractAddress = "0x178134c92EC973F34dD0dd762284b852B211CFC8"
+const MPContractAddress = "0x6A170D415077212E54D2a7cd67a79551C7E5c078"
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
 
 let kit
@@ -119,7 +119,7 @@ function productTemplate(_product) {
 }
 
 function identiconTemplate(_address) {
-  const icon = "product"
+  const icon = "any"
     .create({
       seed: _address,
       size: 8,
