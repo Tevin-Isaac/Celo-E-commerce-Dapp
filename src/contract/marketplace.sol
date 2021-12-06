@@ -80,7 +80,8 @@ contract Marketplace {
             _location,
             _category,
             _price,
-            0,  
+            0,
+            0  
         );
         productsLength++;
     }
