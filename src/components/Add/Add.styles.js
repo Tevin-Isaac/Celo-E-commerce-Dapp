@@ -47,7 +47,3 @@ export const AddInput = styled.input`
     padding: 10px 20px;
     width: 49%;
   `
-export const AddIcon = styled(BiFoodMenu)`
-font-size: 2rem;
-margin-right: 1rem;
-`;

@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {Button} from '../../Globalstyles';
+import React, {} from 'react';
  import'./index.css';
 function Footer(props) {
     return (
@@ -75,6 +74,6 @@ function Footer(props) {
           </div>
         </div>
       </footer>
-
-    }
+)
+}
     export default Footer;
