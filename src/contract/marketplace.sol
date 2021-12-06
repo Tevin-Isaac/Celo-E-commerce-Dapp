@@ -17,61 +17,102 @@ interface IERC20Token {
 contract Marketplace {
 
     uint internal productsLength = 0;
+    
+    //  address of the cusd token
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
+    
+    // admin address
+    address ownerAddress;
 
+// struct containing product data
     struct Product {
         address payable owner;
         string name;
         string image;
         string description;
         string location;
+        string category;
         uint price;
-        uint sold;
+        uint sales;
     }
 
+// map product struck to an integer
     mapping (uint => Product) internal products;
+    
+    // event to e triggered when product is ordered
+    event ProductOrdered (
+        address _from,
+        uint ProductId
+    );
+    
+    // admin modifier
+    modifier isAdmin(){
+        require(msg.sender == ownerAddress, "You are not an admin");
+        _;
+    }
+    
+    
+    // constructor
+    constructor(){
+        ownerAddress = msg.sender;
+    }
+    
+    
 
-    function writeProduct(
+
+// save a particular product to the blockchain
+    function setProduct(
         string memory _name,
         string memory _image,
         string memory _description, 
-        string memory _location, 
+        string memory _location,
+        string memory _category,
         uint _price
     ) public {
-        uint _sold = 0;
+     
+        require(_price > 0, "Please enter a valid price");
+        
         products[productsLength] = Product(
             payable(msg.sender),
             _name,
             _image,
             _description,
             _location,
+            _category,
             _price,
-            _sold
+            0,  
         );
         productsLength++;
     }
 
-    function readProduct(uint _index) public view returns (
+// get a particular product
+    function getProduct(uint _index) public view returns (
         address payable,
         string memory, 
         string memory, 
         string memory, 
-        string memory, 
+        string memory,
+        string memory,
         uint, 
+        uint,
         uint
     ) {
+        Product storage product = products[_index];
         return (
-            products[_index].owner,
-            products[_index].name, 
-            products[_index].image, 
-            products[_index].description, 
-            products[_index].location, 
-            products[_index].price,
-            products[_index].sold
+            product.owner,
+            product.name, 
+            product.image, 
+            product.description, 
+            product.location, 
+            product.category,
+            product.price,
+            product.sales,
         );
     }
     
-    function buyProduct(uint _index) public payable  {
+    // order a product
+
+    function orderProduct(uint _index) public payable  {
         require(
           IERC20Token(cUsdTokenAddress).transferFrom(
             msg.sender,
@@ -80,10 +121,12 @@ contract Marketplace {
           ),
           "Transfer failed."
         );
-        products[_index].sold++;
+        products[_index].sales++;
+        emit ProductOrdered(msg.sender, _index);
     }
     
-    function getProductsLength() public view returns (uint) {
+    // get product length
+    function getProductOrdersLength() public view returns (uint) {
         return (productsLength);
     }
 }
