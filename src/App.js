@@ -24,7 +24,7 @@ function App() {
   const [celoBalance, setCeloBalance] = useState(0);
   const [contract, setcontract] = useState(null);
   const [address, setAddress] = useState(null);
-  const [Products, Products] = useState([]);
+  const [products,setProduct] = useState([]);
   const [kit, setKit] = useState(null);
   const [cUSDBalance, setcUSDBalance] = useState(0);
 
@@ -96,7 +96,7 @@ function App() {
     const celoBalance = balance.CELO.shiftedBy(-ERC20_DECIMALS).toFixed(2);
     const USDBalance = balance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2);
 
-    const contract = new kit.web3.eth.Contract(marketplaceAbi, contractAddress);
+    const contract = new kit.web3.eth.Contract(marketplaceAbi, ContractAddress);
 
     setcontract(contract);
     setCeloBalance(celoBalance);
@@ -123,8 +123,8 @@ function App() {
       });
       _products.push(_product);
     }
-    const Products = await Promise.all(_Products);
-    setProduct(products);
+    const products = await Promise.all(_products);
+    products(products);
   };
 
   // function to add product
@@ -156,7 +156,7 @@ function App() {
   };
 
   // function to initiate transaction
-  const orderproduct = async (_price, _index) => {
+  const orderProduct = async (_price, _index) => {
     try {
       const cUSDContract = new kit.web3.eth.Contract(
         erc20,
@@ -165,13 +165,13 @@ function App() {
       const cost = new BigNumber(_price).shiftedBy(ERC20_DECIMALS).toString();
 
       await cUSDContract.methods
-        .approve(contractAddress, cost)
+        .approve(ContractAddress, cost)
         .send({ from: address });
 
       await contract.methods.orderProduct(_index).send({ from: address });
 
       getBalance();
-      getProduct();
+      getProducts();
     } catch (error) {
       console.log({ error });
     }
@@ -188,8 +188,8 @@ function App() {
       />
        <Orders/>
       <Navbar/>
-      <Maincontent/>
-      <Add addProduct={addProduct} />
+      <MainContent/>
+      <any addProduct={addProduct} />
       <Footer
         cUSDBalance={cUSDBalance}
         celoBalance={celoBalance}
