@@ -1,12 +1,9 @@
 import React, { useState, useEffect,} from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import GlobalStyles from "./Globalstyles";
-import { MainContent,Navbar, Footer,Orders } from "./components";
+import { MainContent,Navbar, Footer,Orders} from "./components";
+import {  Add } from "./components";
 
-
-import  './components/Products';
-import  './components/Filter';
-import './components/Basket';
 import './index.css';
 import Web3 from "web3"
 import { newKitFromWeb3 } from "@celo/contractkit";
@@ -189,7 +186,7 @@ function App() {
        <Orders/>
       <Navbar/>
       <MainContent/>
-      <any addProduct={addProduct} />
+      <Add addProduct={addProduct} />
       <Footer
         cUSDBalance={cUSDBalance}
         celoBalance={celoBalance}
