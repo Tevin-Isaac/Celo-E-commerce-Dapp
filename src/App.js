@@ -1,5 +1,6 @@
 import React, { useState, useEffect,} from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import GlobalStyles from "./Globalstyles";
 import { MainContent,Navbar, Footer,Orders} from "./components";
 import {  Add } from "./components";
@@ -116,6 +117,7 @@ function App() {
           category: p[5],
           price: new BigNumber(p[6]),
           sold: p[7],
+          pending: p[8],
         });
       });
       _products.push(_product);
@@ -130,6 +132,7 @@ function App() {
     _image,
     _description,
     _location,
+    _pending,
     _category,
     _price
   ) => {
@@ -144,6 +147,7 @@ function App() {
           _location,
           _category,
           price,
+          _pending
         )
         .send({ from: address });
       getProducts();

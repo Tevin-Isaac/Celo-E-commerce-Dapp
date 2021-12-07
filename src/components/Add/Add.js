@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import React, {} from 'react';
 import {Button} from '../../Globalstyles';
-import './index.css';
+
 
 import {
     AddContainer,
@@ -19,18 +19,20 @@ const Add = props => {
     const [location, setLocation] = useState('')
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
+    const [pending, setPending] = useState('')
     
 
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.addToProduct(name, image, description, location, category, price);
+        props.addToProduct(name, image, description, location, category,pending, price);
         setName('');
         setImage('');
         setDescription('');
         setLocation('');
         setCategory('');
         setPrice('');
+        setPending('');
        
     }
 
@@ -57,6 +59,10 @@ const Add = props => {
                         onChange = {(e)=>setCategory(e.target.value)}/>
                         <AddInput placeholder="Price" required type="number"
                         onChange = {(e)=>setPrice(e.target.value)}/>
+                    </AddCardContent>
+                    <AddCardContent>
+                        <AddInput placeholder="Pending orders" required type="number"
+                        onChange = {(e)=>setPending(e.target.value)}/>
                     </AddCardContent>
                     <Button type="submit" info><AddIcon/>Add Product</Button>
                 </AddContainer>

@@ -1,5 +1,5 @@
 import React, {} from 'react';
- import'./index.css';
+
 function Footer(props) {
     return (
         <footer className="new_footer_area bg_color">

@@ -58,6 +58,13 @@ const Orders = props => {
                                         {product.description}
                                     </OrderCardDescription>
                                     <OrderCardDetails>
+                                    <OrderCardItems>
+                                            <OrderCardTitle>Pending</OrderCardTitle>
+                                            <OrderCardItem>
+                                                <OrderCardIcon/>
+                                                <OrderCardText>{product.pending}</OrderCardText>
+                                            </OrderCardItem>
+                                        </OrderCardItems>
                                         <OrderCardItems>
                                             <OrderCardTitle>Category</OrderCardTitle>
                                             <OrderCardItem>

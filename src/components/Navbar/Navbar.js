@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { IconContext } from "react-icons";
-import { BiMenu, BiX } from "react-icons/bi";
-import {Button} from '../../Globalstyles';
 
-import './index.css';
 
 const Navbar = props => {
     const [click, setClick] = useState(false);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Container} from '../../Globalstyles';
+import GlobalStyles, {Container} from '../../Globalstyles';
 
 export const AddContainer = styled(Container)`
 display: flex;
@@ -47,3 +47,7 @@ export const AddInput = styled.input`
     padding: 10px 20px;
     width: 49%;
   `
+  export const AddIcon = styled(GlobalStyles)`
+  font-size: 2rem;
+  margin-right: 1rem;
+  `;

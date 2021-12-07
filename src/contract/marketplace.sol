@@ -34,6 +34,8 @@ contract Marketplace {
         string category;
         uint price;
         uint sales;
+        uint pending;
+        
     }
 
 // map product struck to an integer
@@ -68,6 +70,7 @@ contract Marketplace {
         string memory _location,
         string memory _category,
         uint _price
+        uint _pending
     ) public {
      
         require(_price > 0, "Please enter a valid price");
@@ -80,8 +83,8 @@ contract Marketplace {
             _location,
             _category,
             _price,
-            0,
-            0  
+            0,  
+            _pending
         );
         productsLength++;
     }
@@ -108,6 +111,8 @@ contract Marketplace {
             product.category,
             product.price,
             product.sales,
+            product.pending
+            
         );
     }
     
