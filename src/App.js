@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import GlobalStyles from "./Globalstyles";
 import { MainContent,Navbar, Footer,Orders} from "./components";
+import { HistoryOrder} from "./components";
 import {  Add } from "./components";
 
 import './index.css';
@@ -22,9 +23,10 @@ function App() {
   const [celoBalance, setCeloBalance] = useState(0);
   const [contract, setcontract] = useState(null);
   const [address, setAddress] = useState(null);
-  const [products,setProduct] = useState([]);
+  const [products,setProducts] = useState([]);
   const [kit, setKit] = useState(null);
   const [cUSDBalance, setcUSDBalance] = useState(0);
+  
 
   const connectCeloWallet = async () => {
     if (window.celo) {
@@ -40,6 +42,8 @@ function App() {
 
         await setAddress(user_address);
         console.log(user_address);
+        await setProducts(products);
+        console.log(products);
 
         await setKit(kit);
         // console.log(kit)
@@ -100,6 +104,7 @@ function App() {
     setCeloBalance(celoBalance);
     setcUSDBalance(USDBalance);
   };
+  
 
   const getProducts = async function () {
     let _productsLength = await contract.methods.getProductOrdersLength().call();
@@ -125,6 +130,8 @@ function App() {
     const products = await Promise.all(_products);
     products(products);
   };
+  
+   
 
   // function to add product
   const addProduct = async (
@@ -132,9 +139,10 @@ function App() {
     _image,
     _description,
     _location,
-    _pending,
     _category,
+    _pending,
     _price
+    
   ) => {
     try {
       const price = new BigNumber(_price).shiftedBy(ERC20_DECIMALS).toString();
@@ -187,10 +195,10 @@ function App() {
         address={address}
         connectCeloWallet={connectCeloWallet}
       />
-       <Orders/>
+       <Orders products={products} orderProducts={orderProduct} />
+       <Add addProducts={addProduct} />
+       <HistoryOrder products={products} />
       <Navbar/>
-      <MainContent/>
-      <Add addProduct={addProduct} />
       <Footer
         cUSDBalance={cUSDBalance}
         celoBalance={celoBalance}
