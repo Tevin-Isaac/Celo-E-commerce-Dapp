@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {BiFoodMenu} from 'react-icons/bi';
+
 import {Container} from '../../Globalstyles';
 
 export const HistoryOrderContainer = styled(Container)`
@@ -48,7 +48,3 @@ export const HistoryOrderInput = styled.input`
     padding: 10px 20px;
     width: 49%;
   `
-export const HistoryOrderIcon = styled(BiFoodMenu)`
-font-size: 2rem;
-margin-right: 1rem;
-`;

@@ -40,13 +40,13 @@ function App() {
 
         kit.defaultAccount = user_address;
 
-        await setAddress(user_address);
+         setAddress(user_address);
         console.log(user_address);
-        await setProducts(products);
+         setProducts(products);
         console.log(products);
 
-        await setKit(kit);
-        // console.log(kit)
+        setKit(kit);
+        console.log(kit)
 
         // web3 events
         let options = {
